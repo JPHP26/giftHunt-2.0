@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gifthunterbetaversion/question_gender_screen.dart';
+import 'package:gifthunterbetaversion/question_gender/question_gender_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
