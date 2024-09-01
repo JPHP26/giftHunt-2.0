@@ -1,3 +1,3 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final ageProvider = StateProvider<String?>((ref) => null);
+final ageProvider = StateProvider<String?>((ref) => '20');
