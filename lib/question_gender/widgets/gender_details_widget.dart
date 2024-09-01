@@ -29,6 +29,7 @@ class GenderDetailsWidget extends ConsumerWidget {
             Text(
               gender,
               style: const TextStyle(
+                fontFamily: 'SourceSans3',
                 color: Colors.black,
                 fontSize: 18,
               ),

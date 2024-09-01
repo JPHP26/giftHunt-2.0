@@ -5,7 +5,7 @@ import 'package:gifthunterbetaversion/question_gender/question_gender_provider.d
 import 'package:http/http.dart' as http;
 
 const apiKey =
-    'sk-HVj6xFo1ClU5YkySCsM9nrspVN1LnIDJeLgtn_vXSVT3BlbkFJHJ8bkpxPxh-c4l0DJ5WdWrmI4fJfvrYucoQ3p9TJgA';
+    'sk-JOk2WpFxUz_fgad9YXtALi6_BOs9RqV5opK0YrItymT3BlbkFJSutfIbEjoDZJYarWZb7IyR1CrwEDZm_YsAZ7pKGw8A';
 
 final hobbiesProvider = FutureProvider<List<String>>((ref) async {
   final gender = ref.watch(questionGenderProvider);
@@ -18,7 +18,7 @@ final hobbiesProvider = FutureProvider<List<String>>((ref) async {
   final String firstPart =
       gender != null ? 'pentru o persoana de tip ${gender!}' : 'pentru o persoana oarecare';
   const String secondPart =
-      'Generate a list of hobbies. Return only the names of the hobbies, separated by spaces. Do not include numbers, commas, or any additional information. return only 32 hobbies. the names should be in english. DO NOT REPEAT THEM';
+      'Generate a list of hobbies. Return only the names of the hobbies, separated by commas. Do not include numbers, spaces, or any additional information. return only 32 hobbies. the names should be in english. DO NOT REPEAT THEM';
   final body = jsonEncode({
     "model": "gpt-3.5-turbo",
     "messages": [
@@ -40,12 +40,12 @@ final hobbiesProvider = FutureProvider<List<String>>((ref) async {
     final data = jsonDecode(response.body);
     final message = data['choices'][0]['message']['content'].trim();
 
-    final removeNonAlpha = RegExp(r'[^a-zA-Z\s]');
-    String cleanedText = message.replaceAll(removeNonAlpha, '');
-    final multipleSpaces = RegExp(r'\s+');
-    cleanedText.replaceAll(multipleSpaces, ' ').trim();
+    // final removeNonAlpha = RegExp(r'[^a-zA-Z\s]');
+    // String cleanedText = message.replaceAll(removeNonAlpha, '');
+    // final multipleSpaces = RegExp(r'\s+');
+    // cleanedText.replaceAll(multipleSpaces, ' ').trim();
 
-    List<String> hobbies = cleanedText.split(' ');
+    List<String> hobbies = message.split(',');
     return hobbies;
   } else {
     throw Exception('Eroare: ${response.statusCode} - ${response.body}');
